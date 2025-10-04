@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="icon" href="./favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg,#6a00f4 0%,#8e05c2 40%, #0d0d0d 100%);
+            color: white;
+        }
+
+        header {
+            width: 85%;
+            margin: 1rem auto 0;
+            padding: 1rem 2rem;
+            background: #0d0d0d;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .favicon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            margin-right: 1rem;
+        }
+
+        .intro {
+            flex: 1;
+            margin-left: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .name {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #2ce0c7;
+        }
+
+        .bio {
+            font-size: 1rem;
+            font-weight: 300;
+            color: #ccc;
+        }
+
+        nav.links ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        nav.links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav.links a:hover {
+            color: #2ce0c7;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li::after {
+            content: '';
+            display: block;
+            width: 0%;
+            height: 2px;
+            background: #6a00f4;
+            transition: 0.3s;
+            position: absolute;
+            bottom: -5px;
+        }
+
+        nav ul li:hover::after {
+            width: 100%;
+        }
+
+        main {
+            width: 90%;
+            margin: 2rem auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        section {
+            padding: 2rem 2rem 0.5rem;
+            border: 1.5px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+        }
+
+        .about {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .about-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 20%;
+            object-fit: cover;
+        }
+
+        .about-content h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            
+        }
+
+        .about-content p {
+            font-size: 1.15rem;
+        }
+
+        .resume {
+            display: inline-block;
+            margin-top: 1.2rem;
+            padding: 0.75rem 1.5rem;
+            background: #2ce0c7;
+            color: #0d0d0d;
+            font-weight: 600;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .resume:hover {
+            background: #30a7b1;
+        }
+
+        #skills, #projects, #contact {
+            padding-top: 1rem;
+        }
+
+        #skills h2, #projects h2, #contact h2 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.7rem;
+        }
+
+        .skill-name {
+            background: #8e05c2;
+            padding: 0.4rem 1rem;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 500;
+            
+            box-shadow: 0 1px 8px rgba(106,0,244,0.10);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .project-card {
+            background: #0d0d0d;
+            border-radius: 11px;
+            box-shadow: 0 2px 12px rgba(106,0,244,0.07);
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .project-title {
+            font-size: 1.15rem;
+            color: #2ce0c7;
+            font-weight: 700;
+        }
+
+        .project-desc {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tech {
+            font-size: 0.95rem;
+            color: #8e05c2;
+            font-weight: 500;
+        }
+
+        .project-links a {
+            margin-right: 1rem;
+            color: red;
+            text-decoration: none;
+            font-size: 0.93rem;
+        }
+
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-list {
+            margin-top: 1rem;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .contact-list a {
+            color: #2ce0c7;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .contact-list a:hover {
+            color: #30a7b1;
+        }
+
+        footer {
+            width: 90%;
+            margin: 2.5rem auto 0.5rem;
+            text-align: center;
+            font-size: 0.95rem;
+            color: grey;
+            border-top: 1px solid black;
+            padding: 1rem 0 0;
+        }
+
+/* Tablets & small laptops */
+@media (max-width: 1024px) {
+    header, main, footer { width: 95%; }
+    .about-img { width: 100px; height: 100px; }
+    .about-content h1 { font-size: 2rem; }
+    .resume { padding: 0.6rem 1.2rem; font-size: 0.95rem; }
+    .projects-grid { gap: 1.3rem; }
+}
+
+/* Mobile devices */
+@media (max-width: 700px) {
+    header, main, footer { width: 98%; }
+    header { flex-direction: column; align-items: flex-start; padding: 1rem; }
+    nav.links ul { flex-direction: column; gap: 0.8rem; }
+    .about { flex-direction: column; align-items: center; text-align: center; gap: 1rem; }
+    .about-img { width: 90px; height: 90px; }
+    .about-content h1 { font-size: 1.8rem; }
+    .resume { padding: 0.55rem 1rem; font-size: 0.9rem; }
+    .skills-list, .contact-list { justify-content: center; flex-direction: column; gap: 0.8rem; }
+    .projects-grid { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+/* Extra small phones */
+@media (max-width: 400px) {
+    .about-content h1 { font-size: 1.5rem; }
+    .name { font-size: 1.6rem; }
+    .bio { font-size: 0.85rem; }
+    .resume { padding: 0.5rem 0.9rem; font-size: 0.85rem; }
+}
+
+
+    
+    </style>
+</head>
+<body>
+    <header>
+        <img class="favicon" src="./favicon.png" alt="logo">
+        <div class="intro">
+            <div class="name">Shiv Bohara</div>
+            <div class="bio">Student | Scaler School of Technology</div>
+        </div>
+        <nav class="links">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="about">
+            <img class="about-img" src="./WhatsApp Image 2025-10-04 at 9.34.51 PM.jpeg" alt="Profile picture of Shiv Bohara">
+            <div class="about-content">
+                <h1>Hello, I'm Shiv Bohara</h1>
+                <p>A passionate and curious first-year student at Scaler School of Technology, interested in web development and building impactful solutions.</p>
+                <a href="#" class="resume">Download Resume</a>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills-list">
+                <div class="skill-name">HTML5</div>
+                <div class="skill-name">CSS3</div>
+                <div class="skill-name">JavaScript</div>
+                <div class="skill-name">Python</div>
+                <div class="skill-name">React.js</div>
+                <div class="skill-name">Git</div>
+                <div class="skill-name">Figma</div>
+                <div class="skill-name">Teamwork</div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-title">Portfolio Website</div>
+                    <div class="project-desc">My personal portfolio built with semantic HTML and clean CSS, showing off projects and skills.</div>
+                    <div class="project-tech">Tech: HTML, CSS, JavaScript</div>
+                    <div class="project-links">
+                        <a href="#">GitHub</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-title">Student Event Tracker</div>
+                    <div class="project-desc">A lightweight app to help students track campus events and deadlines efficiently.</div>
+                    <div class="project-tech">Tech: React.js, Python Flask</div>
+                    <div class="project-links">
+                        <a href="#">GitHub</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-title">Quiz App</div>
+                    <div class="project-desc">A dynamic quiz platform for fun and practice, featuring scoring and multiple categories.</div>
+                    <div class="project-tech">Tech: JavaScript, CSS</div>
+                    <div class="project-links">
+                        <a href="#">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Always open to connecting! Reach out for collaboration, queries, or just a friendly chat.</p>
+            <div class="contact-list">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=shivbohara18@gmail.com" target="_blank">Email</a>
+                <a href="https://www.linkedin.com/in/imsbohara18" target="_blank">LinkedIn</a>
+                <a href="https://github.com/ImSBohara18" target="_blank">GitHub</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; Shiv_Bohara_10143_shiv.25bcs10143@sst.scaler.com - All rights reserved
+    </footer>
+</body>
+</html>
